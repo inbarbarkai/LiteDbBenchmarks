@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace LiteDB_Benchmark
@@ -32,7 +33,7 @@ namespace LiteDB_Benchmark
 
         public Task<TestSubject> FindByIdAsync(Guid id)
         {
-            var result = _testSubjects.FindById(id);
+            var result = _testSubjects.Find(x => x.Id == id).FirstOrDefault();
             return Task.FromResult(result);
         }
 
